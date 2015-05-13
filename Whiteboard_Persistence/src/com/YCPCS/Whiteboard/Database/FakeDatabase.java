@@ -228,4 +228,9 @@ public class FakeDatabase implements DatabaseLayer{
 	public List<User> getAllUsers() {
 		return usersList;
 	}
+
+	@Override
+	public List<Assignment> getAllAssignments() {
+		return assignmentList;
+	}
 }

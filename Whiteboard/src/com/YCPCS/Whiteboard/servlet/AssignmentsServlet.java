@@ -21,6 +21,17 @@ public class AssignmentsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		doRequest(req, resp);
+	}
+
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		doRequest(req, resp);
+	}
+
+	protected void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String doLogout = (String) req.getParameter("logout");
 		String doHelp = (String) req.getParameter("help");
 		String doAccount = (String) req.getParameter("account");
@@ -40,7 +51,6 @@ public class AssignmentsServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/UserAccount");
 			return;
 		} else if (doLogout != null && doLogout.equals("true")) {
-			//System.out.println("DOING LOGOUT");
 			req.setAttribute("username", null);
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
@@ -49,49 +59,29 @@ public class AssignmentsServlet extends HttpServlet {
 		}
 		
 		AssignmentController cont = new AssignmentController();
-		ArrayList<Assignment> assignments = (ArrayList<Assignment>) cont.getAllUserAssignments(user.getId());
+		ArrayList<Assignment> assignments = cont.getAllUserAssignments(user.getId());
+		System.out.println(assignments.size());
 		String classCode = "";
 		if(assignments.size() == 0){
 			classCode = "<h2 style=\"color:red;\">You are not enrolled in any classes</h2>";
 		}else{
 			for(Assignment assignment : assignments){
+				System.out.println(assignment);
 				String temp = 
 					"<div id=\"Assignment\">"+
-						"<h2>"+assignment.getName()+"</h2>"+
-						"<h3>Grade: "+assignment.getAssignmentGrade()+"</h3>"+
+							"<h2>"+assignment.getName()+"</h2>"+
+							"<h3>Grade: "+assignment.getAssignmentGrade()+"</h3>"+
 						"<div id=\"ClassOptions\">"+
-							"<p>"+assignment.getDescription()+"</p>"+
+						"<p>"+assignment.getDescription()+"</p>"+
 						"</div>"+
 					"</div>";
-				
 				classCode += temp;
-
 			}
 		}
 		
 		req.setAttribute("classHTML", classCode);
 		
 		req.getRequestDispatcher("/_view/Assignments.jsp").forward(req, resp);
-	}
-
-
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		doRequest(req, resp);
-	}
-
-	protected void doRequest(HttpServletRequest req,
-			HttpServletResponse resp) throws ServletException, IOException {
-		//{	
-		System.out.println("Adding Assignment");
-		Assignment ass = new Assignment();
-		ass.setName((String) req.getParameter("title"));
-		ass.setDescription((String) req.getParameter("description"));
-		ass.setAssignmentGrade(Float.parseFloat(req.getParameter("assignmentGrade")));
-		ass.setPointValue(Integer.parseInt(req.getParameter("pointValue")));
-		DatabaseProvider.getInstance().addAssignment(ass);
-		resp.sendRedirect(req.getContextPath() + "/Assignments");
-	//}
 	}
 		
 }

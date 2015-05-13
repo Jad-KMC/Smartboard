@@ -52,8 +52,13 @@
   </servlet>
   <servlet>
   <servlet-name>ForumsServlet</servlet-name>
-    <servlet-class>com.YCPCS.Whiteboard.servlet.ForumsServlet</servlet-class>
+   <servlet-class>com.YCPCS.Whiteboard.servlet.ForumsServlet</servlet-class>
   </servlet>
+   <servlet>
+  <servlet-name>CreateAssignmentServlet</servlet-name>
+    <servlet-class>com.YCPCS.Whiteboard.servlet.CreateAssignmentServlet</servlet-class>
+  </servlet>
+  
   
   <!-- Servlet mappings -->
   <servlet-mapping>
@@ -103,6 +108,10 @@
     <servlet-mapping>
     <servlet-name>ForumsServlet</servlet-name>
     <url-pattern>/Forums/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreateAssignmentServlet</servlet-name>
+    <url-pattern>/CreateAssignment/*</url-pattern>
   </servlet-mapping> 
   
   <!-- Listeners -->

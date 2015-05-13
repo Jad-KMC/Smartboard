@@ -786,8 +786,8 @@ public class DerbyDatabase implements DatabaseLayer{
 				Relationship rel = new Relationship();
 				temp.add(rel);
 				loadRelationship(rel, rs, 1);
-				return temp;
 			}
+			return temp;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

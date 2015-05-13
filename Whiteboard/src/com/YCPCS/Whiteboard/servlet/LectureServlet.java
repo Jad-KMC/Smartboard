@@ -56,13 +56,13 @@ public class LectureServlet extends HttpServlet {
 			//TODO: Make more secure
 			LectureController cont = new LectureController();
 			ArrayList<Lecture> lectures = (ArrayList<Lecture>) cont.getAllUserLectures(userId);
-			//System.out.println(lectures.size());
 			for(Lecture lecture : lectures){
 				User teacher = DatabaseProvider.getInstance().getUserById(lecture.getTeacherId());
 				String temp = 
 					"<div id=\"Class\">"+
 						"<h2>"+lecture.getClassName()+"</h2>"+
 						"<h3>Professor: "+teacher.getFirstname() + " " + teacher.getLastname()+"</h3>"+
+						"<h2>"+lecture.getClassDescription() +"</h2>"+
 					"</div>";
 				
 				classCode += temp;

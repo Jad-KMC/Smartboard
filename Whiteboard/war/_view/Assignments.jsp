@@ -31,24 +31,9 @@
 		<ul><form action="${pageContext.request.contextPath}/Assignments"><button type="submit">Assignments</button></form></ul>
 		<ul><form action="${pageContext.request.contextPath}/Forums"><button type="submit">Forums</button></form></ul>
 	</div>
-	<ul><button onclick="toggle_visibility('AssignmentCreator')">Create New Assignment</button></ul>
-	<div id="AssignmentCreator">
-		<form action="${pageContext.request.contextPath}/Assignments" method="post">
-		<br>
-		<h2>Title:</h2>
-		<input type="text" name="title">
-		
-		<h2>Description:</h2>
-		<input type="text" name="question">
-		
-		<h2>Assignment Grade:</h2>
-		<input type="number" name="assignmentGrade">
-		
-		<h2>Point Value: </h2>
-		<input type="number" name="pointValue">
-		<ul><button type="submit">Finish</button></ul>
+		<form action="${pageContext.request.contextPath}/CreateAssignment" method="post">
+		<ul><button>Create New Assignment</button></ul>
 		</form>
-	</div>
 	<div id="CreatedAssignments">
 		${classHTML}
 	</div>	

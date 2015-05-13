@@ -14,11 +14,11 @@ public class AssignmentController {
 		
 	}
 	
-	public List<Assignment> getAllUserAssignments(int userId){
+	public ArrayList<Assignment> getAllUserAssignments(int userId){
 		
-		List<Assignment> assignments = new ArrayList<Assignment>();
+		ArrayList<Assignment> assignments = new ArrayList<Assignment>();
 		
-		List<Relationship> rels = DatabaseProvider.getInstance().getTarget("user", "lecture", userId);
+		List<Relationship> rels = DatabaseProvider.getInstance().getTarget("user", "assignment", userId);
 		if(rels != null){
 			for(Relationship rel : rels){
 				assignments.add(DatabaseProvider.getInstance().getAssignmentById(rel.getTargetId()));

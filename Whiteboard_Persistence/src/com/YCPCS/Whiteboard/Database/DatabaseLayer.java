@@ -49,4 +49,6 @@ public interface DatabaseLayer {
 	public List<User> getAllUsers();
 	
 	public List<Lecture> getAllLectures();
+
+	public List<Assignment> getAllAssignments();
 }
